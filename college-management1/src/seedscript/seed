@@ -1,0 +1,29 @@
+/*import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { College } from '../entities/college.entity';
+import { City } from '../entities/city.entity';
+import { State } from '../entities/state.entity';
+
+@Injectable()
+export class SeedService implements OnModuleInit {
+  constructor(
+    @InjectRepository(College) private readonly collegeRepo: Repository<College>,
+    @InjectRepository(City) private readonly cityRepo: Repository<City>,
+    @InjectRepository(State) private readonly stateRepo: Repository<State>,
+  ) {}
+
+  async onModuleInit() {
+    const states = [{ name: 'California' }, { name: 'New York' }];
+    const cities = [{ name: 'Los Angeles' }, { name: 'San Francisco' }];
+
+    await this.stateRepo.save(states);
+    await this.cityRepo.save(cities);
+
+    const colleges = [
+      { name: 'Stanford', score: 950, city: cities[0], state: states[0] },
+      { name: 'NYU', score: 870, city: cities[1], state: states[1] },
+    ];
+    await this.collegeRepo.save(colleges);
+  }
+}*/
