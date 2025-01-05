@@ -71,6 +71,16 @@ This project is a backend application built using **NestJS** and **PostgreSQL** 
 2. **Install Dependencies**:
    ```bash
    npm install
+   npm i -g @nestjs/cli
+   nest new college-management
+   npm install --save @nestjs/typeorm typeorm pg @nestjs/config
+   npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcrypt
+   npm install dotenv
+   npm install --save @nestjs/swagger swagger-ui-express
+
+
+   Set up the configuration module for environment variables:
+    npm install --save @nestjs/config
    ```
 
 3. **Configure Environment Variables**:
@@ -98,7 +108,7 @@ This project is a backend application built using **NestJS** and **PostgreSQL** 
    ```
 
 6. **Access the APIs**:
-   - Swagger Documentation: [http://localhost:3000/api](http://localhost:3000/api)
+   - Swagger Documentation: [http://localhost:8090/api](http://localhost:8090/api)
 
 ---
 
@@ -122,8 +132,7 @@ This project is a backend application built using **NestJS** and **PostgreSQL** 
 ## **Deployment**
 
 ### **Deployed On Render**
-- **Base URL**: [Your Render URL]
-- **Swagger Documentation**: [Your Swagger URL]
+- **Swagger Documentation**: [http://localhost:8090/api](http://localhost:8090/api)
 
 ---
 
@@ -137,10 +146,7 @@ This project is a backend application built using **NestJS** and **PostgreSQL** 
 
 ---
 
-## **License**
-This project is licensed under the [MIT License](LICENSE).
-
 ---
 
 ## **Contact**
-For queries or issues, please email at **product@sportsdunia.com**.
+For queries or issues, please email at **nb655690@gmail.com**.
