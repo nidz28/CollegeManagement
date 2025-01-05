@@ -1,181 +1,142 @@
-# Project Documentation
+# CollegeManagement
+This project is a backend application built using NestJS and PostgreSQL to manage and query college-related data. The system is designed to handle large datasets (millions of rows) while providing optimized endpoints for managing relationships and executing complex queries.
+# College Management Backend API
 
 ---
 
-## **Project Structure Overview**
-
-The application follows a modular structure to ensure clean code organization and scalability. Below is the folder structure and an explanation of each component:
-
-```
-src/
-  ├── auth/
-  │   ├── auth.controller.ts
-  │   ├── auth.module.ts
-  │   ├── auth.service.ts
-  │   └── jwt.strategy.ts
-  ├── colleges/
-  │   ├── colleges.controller.ts
-  │   ├── colleges.module.ts
-  │   ├── colleges.service.ts
-  │   ├── entities/
-  │   │   ├── college.entity.ts
-  │   │   ├── college-placement.entity.ts
-  │   │   ├── college-course.entity.ts  
-  │   │   ├── city.entity.ts
-  │   │   └── state.entity.ts
-  │   └── user.entity.ts
-  ├── app.module.ts
-  ├── main.ts
-```
+## **Overview**
+This project is a backend application built using **NestJS** and **PostgreSQL** to manage and query college-related data. Designed to handle large datasets with millions of rows, it demonstrates efficient database relationships, complex queries, authentication, and deployment in a production-like environment.
 
 ---
 
-## **1. auth/**
+## **Features**
 
-Handles authentication and security using **JWT-based authentication**.
+### **1. Database Design**
+- **Colleges Table**: Stores college information (name, score, city, and state).
+- **College Placements Table**: Maintains yearly placement statistics for each college.
+- **College-Wise Courses Table**: Contains course details for colleges.
+- **Cities and States Tables**: Provide geographical references for colleges.
 
-### Files:
-- **auth.controller.ts**: Manages authentication-related API endpoints like login and signup.
-- **auth.module.ts**: Registers all providers and controllers for the authentication module.
-- **auth.service.ts**: Implements the business logic for authentication, like token generation and validation.
-- **jwt.strategy.ts**: Defines the JWT validation strategy for protecting secured routes.
+### **2. API Endpoints**
+- **College Placement Data**: Year-wise placement statistics and trends.
+- **College Courses**: Retrieve courses offered by a college, sorted by course fees.
+- **Filter by City/State**: Fetch colleges based on city or state filters.
 
----
+### **3. Authentication**
+- Implements **JWT-based authentication** for secure access.
+- Supports user login and signup functionality.
 
-## **2. colleges/**
+### **4. CRUD Operations**
+- Create, Read, Update, and Delete operations for colleges, placements, and courses.
+- Includes robust input validation and error handling.
 
-Handles all college-related operations, including managing placements, courses, and filtering colleges by city or state.
+### **5. Deployment**
+- Deployed on **Render** with PostgreSQL.
+- Integrated **Swagger** documentation for API exploration.
 
-### Files:
-
-- **colleges.controller.ts**: Defines REST API endpoints for:
-  - Fetching college placements data.
-  - Retrieving courses offered by a college.
-  - Filtering colleges by city and state.
-
-- **colleges.module.ts**: Registers services and controllers for the colleges module.
-
-- **colleges.service.ts**: Contains business logic for querying and managing college data.
-
-### **entities/**
-- **college.entity.ts**:
-  Represents the `Colleges` table with fields like `id`, `name`, `score`, `city_id`, and `state_id`.
-
-- **college-placement.entity.ts**:
-  Represents the `College_Placement` table with fields like `college_id`, `year`, `highest_placement`, `average_placement`, and `placement_rate`.
-
-- **college-course.entity.ts**:
-  Represents the `College_Wise_Course` table with fields like `college_id`, `course_name`, `course_duration`, and `course_fee`.
-
-- **city.entity.ts**:
-  Represents the `Cities` table with fields `id` and `name`.
-
-- **state.entity.ts**:
-  Represents the `States` table with fields `id` and `name`.
-
-- **user.entity.ts**:
-  Represents a simple user entity for managing user data in the authentication module.
+### **6. Optional Enhancements**
+- Pagination for large dataset queries.
+- Role-based access control for admin tasks.
 
 ---
 
-## **3. app.module.ts**
+## **Technologies Used**
 
-The root module that imports and integrates all other modules (e.g., `auth`, `colleges`). This acts as the entry point for the application’s dependency injection system.
-
----
-
-## **4. main.ts**
-
-The entry file of the application. Responsibilities include:
-- Bootstrapping the NestJS application.
-- Setting up global middleware (e.g., CORS).
-- Initializing Swagger documentation for API exploration.
+| **Technology** | **Description**                                   |
+|----------------|---------------------------------------------------|
+| **NestJS**     | Backend framework for building scalable APIs.    |
+| **PostgreSQL** | Relational database for efficient data handling. |
+| **TypeORM**    | ORM for seamless database integration.           |
+| **JWT**        | For secure authentication.                      |
+| **Render**     | Cloud platform for deployment.                  |
+| **Swagger**    | API documentation and testing tool.             |
 
 ---
 
-## **Database Integration**
-The project uses **PostgreSQL** as its database with the following schema:
+## **Installation and Setup**
 
-### **Tables**
+### **Prerequisites**
+- Node.js (v14 or above)
+- PostgreSQL
+- npm or yarn
 
-1. **Colleges**:
-   - `id` (Primary Key)
-   - `name`
-   - `score`
-   - `city_id` (Foreign Key to `Cities`)
-   - `state_id` (Foreign Key to `States`)
+### **Steps to Run the Project**
 
-2. **College_Placement**:
-   - `id` (Primary Key)
-   - `college_id` (Foreign Key to `Colleges`)
-   - `year`
-   - `highest_placement`
-   - `average_placement`
-   - `median_placement`
-   - `placement_rate`
-
-3. **College_Wise_Course**:
-   - `id` (Primary Key)
-   - `college_id` (Foreign Key to `Colleges`)
-   - `course_name`
-   - `course_duration`
-   - `course_fee`
-
-4. **Cities**:
-   - `id` (Primary Key)
-   - `name`
-
-5. **States**:
-   - `id` (Primary Key)
-   - `name`
-
----
-
-## **Deployment Details**
-
-### **Hosting**
-- **Platform**: Render (Free Tier)
-- **Database**: Hosted PostgreSQL instance on Render.
-
-### **API Documentation**
-- Swagger is available for testing and exploring APIs.
-- **Swagger URL**: [Your Swagger URL]
-
----
-
-## **How to Use**
-
-### **Installation**
-1. Clone the repository:
+1. **Clone the Repository**:
    ```bash
    git clone https://github.com/your-repo-url.git
    cd your-project-folder
    ```
 
-2. Install dependencies:
+2. **Install Dependencies**:
    ```bash
    npm install
+   npm i -g @nestjs/cli
+   nest new college-management
+   npm install --save @nestjs/typeorm typeorm pg @nestjs/config
+   npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcrypt
+   npm install dotenv
+   npm install --save @nestjs/swagger swagger-ui-express
+
+
+   Set up the configuration module for environment variables:
+    npm install --save @nestjs/config
    ```
 
-3. Set up the database in `.env`:
-   ```env
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USER=your_username
-   DB_PASSWORD=your_password
-   DB_NAME=your_database
-   ```
+3. **Configure Environment Variables**:
+   - Create a `.env` file in the project root.
+   - Add the following variables:
+     ```env
+     DB_HOST=localhost
+     DB_PORT=5432
+     DB_USER=your_username
+     DB_PASSWORD=your_password
+     DB_NAME=your_database
+     JWT_SECRET=your_secret_key
+     ```
 
-4. Run the application:
+4. **Set Up the Database**:
+   - Create the required database in PostgreSQL.
+   - Run migrations (if applicable):
+     ```bash
+     npm run typeorm migration:run
+     ```
+
+5. **Start the Application**:
    ```bash
    npm run start:dev
    ```
 
-### **Testing the APIs**
-- Use Swagger or Postman for testing endpoints.
-- Seed data using migrations if needed.
+6. **Access the APIs**:
+   - Swagger Documentation: [http://localhost:8090/api](http://localhost:8090/api)
+
+---
+
+## **API Endpoints**
+
+### **1. College Placement Data**
+- **GET /college_data/{college_id}**:
+  - Returns average placement statistics and trends.
+
+### **2. College Courses**
+- **GET /college_courses/{college_id}**:
+  - Fetches courses for a college, sorted by fees.
+
+### **3. Colleges by City/State**
+- **GET /colleges?city={city_name}**
+- **GET /colleges?state={state_name}**
+  - Filters colleges based on city or state.
+
+---
+
+## **Deployment**
+
+### **Deployed On Render**
+- **Swagger Documentation**: [http://localhost:8090/api](http://localhost:8090/api)
+
+---
 
 ---
 
 ## **Contact**
-For further information or queries, reach out to: **product@sportsdunia.com**.
+For queries or issues, please email at **nb655690@gmail.com**.
